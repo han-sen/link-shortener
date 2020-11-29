@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 
 const linkSchema = new mongoose.Schema({
-    urlCode: String,
-    clientUrl: String,
-    shortUrl: String,
+    stubCode: String,
+    clientURL: String,
+    shortURL: String,
     date: { type: String, default: Date.now() },
 });
 

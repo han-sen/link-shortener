@@ -5,39 +5,38 @@ const shortId = require("shortid");
 const config = require("config");
 const Link = require("../models/link");
 
-// post a new URL to /url/shorten
-router.post("/shorten", async (req, res) => {
-    const { clientUrl } = req.body;
-    const baseUrl = config.get("baseUrl");
+// post a new URL to /api/url
+router.post("/", async (req, res) => {
+    const { clientURL } = req.body;
+    const baseURL = config.get("baseURL");
 
     // check out baseUrl
-    if (!validUrl.isUri(baseUrl)) {
+    if (!validUrl.isUri(baseURL)) {
         return res.status(401).json("invalid base url");
     }
 
     // create unique stub code
-    const urlCode = shortId.generate();
+    const stubCode = shortId.generate();
 
     // check client/long URL
-    if (validUrl.isUri(clientUrl)) {
+    if (validUrl.isUri(clientURL)) {
         try {
-            let url = await Link.findOne({ clientUrl });
-            //if url exists
-            if (url) {
-                res.json(url);
+            let newURL = await Link.findOne({ clientURL });
+            //if url entry already exists, return it
+            if (newURL) {
+                res.json(newURL);
             } else {
-                const shortUrl = `${baseUrl}/${urlCode}`;
+                const shortURL = `${baseURL}/${stubCode}`;
                 // create new Link instance
-                url = new Link({
-                    clientUrl,
-                    shortUrl,
-                    urlCode,
+                newURL = new Link({
+                    clientURL,
+                    shortURL,
+                    stubCode,
                     date: new Date(),
                 });
-                // save to db
-                await url.save();
-
-                res.json(url);
+                // save to db and return
+                await newURL.save();
+                res.json(newURL);
             }
         } catch (error) {
             return res.status(500).json("invalid db entry");
