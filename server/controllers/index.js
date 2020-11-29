@@ -2,9 +2,9 @@ const express = require("express");
 const router = express.Router();
 const Link = require("../models/link");
 
-router.get("/:stubCode", async (req, res) => {
+router.get("/:slug", async (req, res) => {
     try {
-        const linkEntry = await Link.findOne({ stubCode: req.params.stubCode });
+        const linkEntry = await Link.findOne({ slug: req.params.slug });
         if (linkEntry) {
             res.redirect(linkEntry.clientURL);
         } else {

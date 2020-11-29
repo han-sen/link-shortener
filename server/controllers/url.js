@@ -16,7 +16,7 @@ router.post("/", async (req, res) => {
     }
 
     // create unique stub code
-    const stubCode = shortId.generate();
+    const slug = shortId.generate();
 
     // check client/long URL
     if (validUrl.isUri(clientURL)) {
@@ -26,12 +26,12 @@ router.post("/", async (req, res) => {
             if (newURL) {
                 res.json(newURL);
             } else {
-                const shortURL = `${baseURL}/${stubCode}`;
+                const shortURL = `${baseURL}/${slug}`;
                 // create new Link instance
                 newURL = new Link({
                     clientURL,
                     shortURL,
-                    stubCode,
+                    slug,
                     date: new Date(),
                 });
                 // save to db and return
