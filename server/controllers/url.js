@@ -24,7 +24,7 @@ router.post("/", async (req, res) => {
             let newURL = await Link.findOne({ clientURL });
             //if url entry already exists, return it
             if (newURL) {
-                res.json(newURL);
+                res.json(newURL.shortURL);
             } else {
                 const shortURL = `${baseURL}/${slug}`;
                 // create new Link instance
@@ -36,7 +36,7 @@ router.post("/", async (req, res) => {
                 });
                 // save to db and return
                 await newURL.save();
-                res.json(newURL);
+                res.json(newURL.shortURL);
             }
         } catch (error) {
             return res.status(500).json("invalid db entry");
