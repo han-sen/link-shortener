@@ -3,10 +3,30 @@
 // <- --------------------------------------------- ->
 
 const express = require("express");
-const app = express();
 const cors = require("cors");
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+dotenv.config();
+const app = express();
 const PORT = process.env.PORT || 3000;
-const connectDB = require("./config/db");
+
+// <- --------------------------------------------- ->
+// DEPENDENCIES
+// <- --------------------------------------------- ->
+
+const db = process.env.MONGODB_URI;
+
+const connectDB = async () => {
+    try {
+        await mongoose.connect(db, {
+            useNewUrlParser: true,
+        });
+        console.log("MongoDB connected...");
+    } catch (error) {
+        console.error(error.message);
+        process.exit(1);
+    }
+};
 
 connectDB();
 
@@ -24,4 +44,4 @@ app.use("/api/url", require("./controllers/url"));
 // LISTENER
 // <- --------------------------------------------- ->
 
-app.listen(PORT, () => console.log(`Listening on Port: ${PORT}`));
+app.listen(PORT, () => console.log(`⚡️ Listening on Port: ${PORT} ⚡️`));
