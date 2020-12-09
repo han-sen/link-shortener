@@ -5,7 +5,12 @@
         <button type="submit" @click="sendLink">
             SUBMIT
         </button>
-        <p>{{ newURL }}</p>
+        <button @click="clearForm">
+            CLEAR
+        </button>
+        <div v-bind:class="{ active: isActive }">
+            <p>{{ newURL }}</p>
+        </div>
     </div>
 </template>
 
@@ -17,6 +22,7 @@ export default {
         return {
             link: "",
             newURL: "",
+            isActive: false,
         };
     },
     methods: {
@@ -28,10 +34,16 @@ export default {
                 .then((response) => {
                     console.log(response.data);
                     this.newURL = response.data;
+                    this.isActive = true;
                 })
                 .catch((error) => {
                     console.log(error);
                 });
+        },
+        clearForm() {
+            this.link = "";
+            this.newURL = "";
+            this.isActive = false;
         },
     },
 };
@@ -52,5 +64,27 @@ li {
 }
 a {
     color: #42b983;
+}
+
+.active {
+    color: #2d3e4f;
+    display: flex;
+    border: 1px solid #bebebe;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    margin: 1rem auto;
+    background: #eee;
+    border-radius: 4px;
+    transform: translateY(20px);
+    opacity: 0;
+    animation: slide-in 1s ease-in-out forwards;
+}
+
+@keyframes slide-in {
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
 }
 </style>

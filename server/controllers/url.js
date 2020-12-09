@@ -2,13 +2,14 @@ const express = require("express");
 const router = express.Router();
 const validUrl = require("valid-url");
 const shortId = require("shortid");
-const config = require("config");
+const dotenv = require("dotenv");
+dotenv.config();
 const Link = require("../models/link");
 
 // post a new URL to /api/url
 router.post("/", async (req, res) => {
     const { clientURL } = req.body;
-    const baseURL = config.get("baseURL");
+    const baseURL = process.env.baseURL;
 
     // check out baseUrl
     if (!validUrl.isUri(baseURL)) {
