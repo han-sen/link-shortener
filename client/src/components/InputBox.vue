@@ -9,7 +9,7 @@
             CLEAR
         </button>
         <div v-bind:class="{ active: isActive }">
-            <p>{{ newURL }}</p>
+            <input v-model.trim="newURL">{{ newURL }}</input>
         </div>
     </div>
 </template>
