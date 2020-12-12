@@ -9,7 +9,19 @@
             CLEAR
         </button>
         <div v-bind:class="{ active: isActive }">
-            <input v-model.trim="newURL">{{ newURL }}</input>
+            <input
+                id="newURL"
+                class="urlContainer"
+                v-model.trim="newURL"
+                disabled
+            />
+            <button
+                v-clipboard="newURL"
+                v-clipboard:success="onCopy"
+                v-clipboard:error="onError"
+            >
+                🔗
+            </button>
         </div>
     </div>
 </template>
@@ -39,6 +51,14 @@ export default {
                 .catch((error) => {
                     console.log(error);
                 });
+        },
+        onCopy() {
+            let testingCodeToCopy = document.querySelector("#newURL");
+            testingCodeToCopy.setAttribute("type", "text");
+            testingCodeToCopy.select();
+        },
+        onError() {
+            console.log("something went wrong");
         },
         clearForm() {
             this.link = "";
@@ -79,6 +99,14 @@ a {
     transform: translateY(20px);
     opacity: 0;
     animation: slide-in 1s ease-in-out forwards;
+}
+
+.urlContainer {
+    border: none;
+    color: #2d3e4f;
+    font-weight: 700;
+    background: transparent;
+    width: 90%;
 }
 
 @keyframes slide-in {
