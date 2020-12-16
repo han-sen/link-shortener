@@ -8,7 +8,7 @@
         <button @click="clearForm">
             CLEAR
         </button>
-        <div v-bind:class="{ active: isActive }">
+        <div id="newURL-wrap" v-bind:class="{ active: isActive }">
             <input
                 id="newURL"
                 class="urlContainer"
@@ -84,6 +84,10 @@ li {
 }
 a {
     color: #42b983;
+}
+
+#newURL-wrap {
+    opacity: 0;
 }
 
 .active {
