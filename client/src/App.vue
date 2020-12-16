@@ -1,17 +1,20 @@
 <template>
     <Hero />
     <InputBox />
+    <Documentation />
 </template>
 
 <script>
 import InputBox from "./components/InputBox.vue";
 import Hero from "./components/Hero.vue";
+import Documentation from "./components/Documentation.vue";
 
 export default {
     name: "App",
     components: {
         InputBox,
         Hero,
+        Documentation,
     },
 };
 </script>

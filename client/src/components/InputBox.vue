@@ -45,7 +45,7 @@ export default {
                 })
                 .then((response) => {
                     console.log(response.data);
-                    this.newURL = response.data;
+                    this.newURL = response.data.shortURL;
                     this.isActive = true;
                 })
                 .catch((error) => {
