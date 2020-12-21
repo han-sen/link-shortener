@@ -1,13 +1,15 @@
 <template>
-    <div class="hello">
+    <section class="linkBox">
         <h1>Paste your link below:</h1>
-        <input v-model.trim="link" placeholder="long URL here" />
-        <button type="submit" @click="sendLink">
-            SUBMIT
-        </button>
-        <button @click="clearForm">
-            CLEAR
-        </button>
+        <div class="input-wrap">
+            <input v-model.trim="link" placeholder="long URL here" />
+            <button type="submit" @click="sendLink">
+                SUBMIT
+            </button>
+            <button @click="clearForm">
+                CLEAR
+            </button>
+        </div>
         <div id="newURL-wrap" v-bind:class="{ active: isActive }">
             <input
                 id="newURL"
@@ -23,7 +25,7 @@
                 🔗
             </button>
         </div>
-    </div>
+    </section>
 </template>
 
 <script>
@@ -85,9 +87,17 @@ li {
 a {
     color: #42b983;
 }
+p {
+    margin: 1rem 0;
+}
+
+.linkBox {
+    margin: 1rem auto;
+}
 
 #newURL-wrap {
     opacity: 0;
+    margin: 1rem auto;
 }
 
 .active {
@@ -111,6 +121,11 @@ a {
     font-weight: 700;
     background: transparent;
     width: 90%;
+    margin: 1rem auto;
+}
+
+.input-wrap {
+    margin: 1rem auto;
 }
 
 @keyframes slide-in {
