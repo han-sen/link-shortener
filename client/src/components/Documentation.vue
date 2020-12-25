@@ -55,6 +55,8 @@ export default {
 .code-wrap {
     border: 1px solid grey;
     padding: 1rem;
+    max-width: 520px;
+    background: #bebebe;
 }
 h2 {
     text-align: center;
@@ -62,4 +64,5 @@ h2 {
 p {
     margin: 1rem 0;
 }
+
 </style>

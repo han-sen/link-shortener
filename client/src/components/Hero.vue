@@ -19,6 +19,5 @@ export default {
 <style scoped>
 .hero {
     height: 300px;
-    background: red;
 }
 </style>
