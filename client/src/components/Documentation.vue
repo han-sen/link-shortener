@@ -2,25 +2,26 @@
     <section class="documentation">
         <h2>API Usage</h2>
         <div class="documentation-inner">
-            <div class="doc-half">
             <p>
-                You can use the SITENAME API by sending a POST request containing a
-                valid URL to SITENAME.com/api/url
+                You can use the SITENAME API by sending a POST request
+                containing a valid clientURL to SITENAME.com/api/url
             </p>
-            <p class="code-wrap">
-<pre>
+            <p>Example Request:</p>
+            <p></p>
+            <pre>
+ axios.post("http://localhost:3000/api/url", {
+    body: "https://dev.to/harshhhdev/ui-design-trend-of-2021-4fb7",
+ })
+</pre
+            >
+            <p>Example Response:</p>
+            <pre>
+shortURL: "http://localhost:3000/Z0NIpN1xm"
 clientURL: "https://dev.to/harshhhdev/ui-design-trend-of-2021-4fb7"
 date: "Mon Dec 21 2020 15:04:10 GMT-0500 (Eastern Standard Time)"
-shortURL: "http://localhost:3000/Z0NIpN1xm"
 slug: "Z0NIpN1xm"
-__v: 0
-_id: "5fe0ffbae0b9b7fe3800ad38"
-</pre>
-            </p>
-            </div>
-            <div class="doc-half">
-                <p>Image here</p>
-            </div>
+</pre
+            >
         </div>
     </section>
 </template>
@@ -44,18 +45,15 @@ export default {
     background: #eee;
     padding: 2rem;
     flex: 1;
+    line-height: 1.5;
 }
 
 .documentation-inner {
-    display: flex;
+    margin: 0 auto;
+    max-width: 960px;
 }
-.doc-half {
-    width: 50%;
-}
-.code-wrap {
-    border: 1px solid grey;
+pre {
     padding: 1rem;
-    max-width: 520px;
     background: #bebebe;
 }
 h2 {
@@ -64,5 +62,4 @@ h2 {
 p {
     margin: 1rem 0;
 }
-
 </style>

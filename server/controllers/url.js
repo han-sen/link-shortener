@@ -8,7 +8,7 @@ const Link = require("../models/link");
 
 // post a new URL to /api/url
 router.post("/", async (req, res) => {
-    const { clientURL } = req.body;
+    const clientURL = req.body;
     const baseURL = process.env.baseURL;
 
     // check out baseUrl
@@ -30,8 +30,8 @@ router.post("/", async (req, res) => {
                 const shortURL = `${baseURL}/${slug}`;
                 // create new Link instance
                 newURL = new Link({
-                    clientURL,
                     shortURL,
+                    clientURL,
                     slug,
                     date: new Date(),
                 });

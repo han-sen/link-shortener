@@ -43,7 +43,7 @@ export default {
         sendLink() {
             axios
                 .post("http://localhost:3000/api/url", {
-                    clientURL: this.link,
+                    body: this.link,
                 })
                 .then((response) => {
                     console.log(response.data);
