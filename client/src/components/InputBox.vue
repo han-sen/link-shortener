@@ -126,6 +126,9 @@ p {
 
 .input-wrap {
     margin: 1rem auto;
+    background: #634df6;
+    padding: 1rem;
+    border-radius: 2px;
 }
 
 @keyframes slide-in {
