@@ -5,18 +5,10 @@
                 <h2>API Usage</h2>
                 <p>
                     You can use the SITENAME API by sending a POST request
-                    containing a valid clientURL to SITENAME.com/api/url
+                    containing a valid URL to SITENAME.com/api/url
                 </p>
             </div>
             <div class="doc-half">
-                <p>Example Request:</p>
-                <p></p>
-                <pre>
- axios.post("http://localhost:3000/api/url", {
-    body: "https://dev.to/harshhhdev/ui-design-trend-of-2021-4fb7",
- })
-</pre
-                >
                 <p>Example Response:</p>
                 <pre>
 shortURL: "http://localhost:3000/Z0NIpN1xm"
@@ -45,6 +37,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap");
 .documentation {
     padding: 2rem;
     flex: 1;
@@ -54,7 +47,7 @@ export default {
 
 .documentation-inner {
     margin: 0 auto;
-    max-width: 960px;
+    max-width: 60vw;
     display: flex;
 }
 
@@ -63,10 +56,12 @@ export default {
 }
 
 pre {
+    font-family: "Roboto Mono", mono;
     padding: 1rem;
     background: #222222;
     border-radius: 2px;
     color: white;
+    font-size: 0.8rem;
 }
 h2 {
     font-weight: bold;

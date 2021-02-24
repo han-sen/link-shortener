@@ -8,12 +8,11 @@ const Link = require("../models/link");
 
 // post a new URL to /api/url
 router.post("/", async (req, res) => {
-    const clientURL = req.body;
+    const clientURL = req.body.data;
     const baseURL = process.env.baseURL;
-
     // check out baseUrl
     if (!validUrl.isUri(baseURL)) {
-        return res.status(401).json("invalid base url");
+        return res.status(401).json({ message: "invalid base url" });
     }
 
     // create unique stub code
@@ -43,7 +42,7 @@ router.post("/", async (req, res) => {
             return res.status(500).json("invalid db entry");
         }
     } else {
-        res.status(401).json("invalid client URL");
+        res.status(401).json({ message: "invalid base url" });
     }
 });
 

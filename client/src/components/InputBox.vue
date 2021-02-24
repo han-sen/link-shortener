@@ -1,15 +1,5 @@
 <template>
     <section class="linkBox">
-        <h1>Paste your link below:</h1>
-        <div class="input-wrap">
-            <input v-model.trim="link" placeholder="long URL here" />
-            <button type="submit" @click="sendLink">
-                SUBMIT
-            </button>
-            <button @click="clearForm">
-                CLEAR
-            </button>
-        </div>
         <div id="newURL-wrap" v-bind:class="{ active: isActive }">
             <input
                 id="newURL"
@@ -25,6 +15,15 @@
                 🔗
             </button>
         </div>
+        <div class="input-wrap">
+            <input v-model.trim="link" placeholder="long URL here" />
+            <button type="submit" @click="sendLink">
+                SUBMIT
+            </button>
+            <button @click="clearForm">
+                CLEAR
+            </button>
+        </div>
     </section>
 </template>
 
@@ -37,13 +36,14 @@ export default {
             link: "",
             newURL: "",
             isActive: false,
+            linkError: "",
         };
     },
     methods: {
         sendLink() {
             axios
                 .post("http://localhost:3000/api/url", {
-                    body: this.link,
+                    data: this.link,
                 })
                 .then((response) => {
                     console.log(response.data);
@@ -52,6 +52,7 @@ export default {
                 })
                 .catch((error) => {
                     console.log(error);
+                    this.linkError = error;
                 });
         },
         onCopy() {
@@ -90,6 +91,13 @@ a {
 p {
     margin: 1rem 0;
 }
+input,
+button {
+    padding: 0.5rem;
+}
+button {
+    cursor: pointer;
+}
 
 .linkBox {
     margin: 1rem auto;
@@ -98,21 +106,21 @@ p {
 #newURL-wrap {
     opacity: 0;
     margin: 1rem auto;
-}
-
-.active {
     color: #2d3e4f;
     display: flex;
     border: 1px solid #bebebe;
     justify-content: center;
     align-items: center;
     width: 300px;
-    margin: 1rem auto;
+    margin: 3rem auto;
     background: #eee;
     border-radius: 4px;
-    transform: translateY(20px);
+}
+
+.active {
+    transform: translateY(100px);
     opacity: 0;
-    animation: slide-in 1s ease-in-out forwards;
+    animation: slide-in 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
 .urlContainer {
@@ -129,6 +137,7 @@ p {
     background: #634df6;
     padding: 1rem;
     border-radius: 2px;
+    line-height: 1.5;
 }
 
 @keyframes slide-in {
