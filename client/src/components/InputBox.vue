@@ -115,6 +115,7 @@ button {
     margin: 3rem auto;
     background: #eee;
     border-radius: 4px;
+    transition: all 1s ease-in-out;
 }
 
 .active {
